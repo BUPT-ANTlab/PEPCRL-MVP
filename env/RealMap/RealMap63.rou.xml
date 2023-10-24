@@ -1,0 +1,76 @@
+<routes>
+    <vType id="type1" accel="0.8" decel="4.5" sigma="0.5" length="5" maxSpeed="70"/>
+    <!-- Pursuit -->
+    <route id="route0" color="1,1,0" edges="-E19 -E47"/>
+    <route id="route1" color="1,1,0" edges="E46 -59210733#3"/>
+    <route id="route2" color="1,1,0" edges="E18 161802278#0"/>
+    <!-- Evader -->
+    <route id="route3" color="1,1,0" edges="42674465#0 E42"/>
+    <route id="route4" color="1,1,0" edges="-E0 30838084#0"/>
+
+
+    <flow id="Background1" from="-1052396062#1" to="-1052396062#1" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background2" from="-1052396062#2" to="-1052396062#2" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background3" from="-1066602712#0" to="-1066602712#0" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background4" from="-1066602712#1" to="-1066602712#1" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background11" from="-30838084#4" to="-30838084#4" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background24" from="-59210766" to="-59210766" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background25" from="-59210791#2" to="-59210791#2" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background26" from="-59210823" to="-59210823" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background30" from="-953937743#4" to="-953937743#4" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background31" from="-975864682#8" to="-975864682#8" begin="0" end="50" departSpeed="max" number="15"/>
+    <flow id="Background32" from="-E0" to="-E0" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background33" from="-E11" to="-E11" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background34" from="-E12" to="-E12" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background35" from="-E13" to="-E13" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background36" from="-E14" to="-E14" begin="0" end="50" departSpeed="max" number="15"/>
+    <flow id="Background37" from="-E15" to="-E15" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background38" from="-E18" to="-E18" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background39" from="-E19" to="-E19" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background40" from="-E1" to="-E1" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background41" from="-E2" to="-E2" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background56" from="1052396062#1" to="1052396062#1" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background57" from="1052396062#2" to="1052396062#2" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background58" from="1066602712#0" to="1066602712#0" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background59" from="1066602712#1" to="1066602712#1" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background60" from="161802276#0" to="161802276#0" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background61" from="161802276#1" to="161802276#1" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background62" from="161802276#2" to="161802276#2" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background63" from="161802278#0" to="161802278#0" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background65" from="30838084#1" to="30838084#1" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background79" from="59210766" to="59210766" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background80" from="59210791#2" to="59210791#2" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background81" from="59210823" to="59210823" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background85" from="953937743#4" to="953937743#4" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background86" from="975864682#8" to="975864682#8" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background87" from="E0" to="E0" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background88" from="E11" to="E11" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background89" from="E12" to="E12" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background90" from="E13" to="E13" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background91" from="E14" to="E14" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background92" from="E15" to="E15" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background93" from="E18" to="E18" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background94" from="E19" to="E19" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background95" from="E1" to="E1" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background105" from="E4" to="E4" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background107" from="E58" to="E58" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background108" from="E59" to="E59" begin="0" end="50" departSpeed="max" number="6"/>
+    <flow id="Background109" from="E5" to="E5" begin="0" end="50" departSpeed="max" number="6"/>
+
+
+
+
+
+    <!-- Pursuit -->
+    <vehicle id="p0" type="type1" route="route0" depart="0" color="1,0,0"/>
+    <vehicle id="p1" type="type1" route="route0" depart="0" color="1,0,0"/>
+    <vehicle id="p2" type="type1" route="route1" depart="0" color="1,0,0"/>
+    <vehicle id="p3" type="type1" route="route1" depart="0" color="1,0,0"/>
+    <vehicle id="p4" type="type1" route="route2" depart="0" color="1,0,0"/>
+    <vehicle id="p5" type="type1" route="route2" depart="0" color="1,0,0"/>
+    <!-- Evader -->
+    <vehicle id="e0" type="type1" route="route3" depart="0" color="0,0,1"/>
+    <vehicle id="e1" type="type1" route="route3" depart="0" color="0,0,1"/>
+    <vehicle id="e2" type="type1" route="route4" depart="0" color="0,0,1"/>
+
+</routes>
