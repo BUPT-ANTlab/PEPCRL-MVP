@@ -67,7 +67,7 @@ class Muti_agent():
                 all_evaders_pos_tensor = torch.tensor(all_evaders_pos, dtype=torch.float,device=self.device)
                 steps_tensor=torch.tensor([[dc(state["steps"])]], dtype=torch.float,device=self.device)
                 traffic_state_tensor=torch.tensor(traffic_state, dtype=torch.float,device=self.device)
-                topo_link_array_tensor=torch.tensor(topo_link_array, dtype=torch.float,device=self.device)
+                topo_link_array_tensor=torch.tensor(np.array(topo_link_array), dtype=torch.float,device=self.device)
                 target_code = self.agent_list[pursuer_id].DQN_Net.select_target(steps_tensor,ego_pos_tensor,traffic_state_tensor,topo_link_array_tensor,all_evaders_pos_tensor)[0]#选择目标
                 if state["evader_pos"][self.params["evader_ids"][target_code]][0] == -1:
                     target_id = self.min_dis_evader(state, pursuer_id)
