@@ -36,7 +36,7 @@ class Muti_agent():
             self.pr_net_optimizer = optim.Adam(self.pr_exp_net.parameters(), self.params["evaluate_net_learning_rate"])
             self.prioritization_net_buffer=Prioritization_Net_Buffer(params)
             self.beta = self.params["beta0"]
-            self.lamda=self.params["lamda"]#两个参数
+            self.lamda=self.params["lamda"]
 
 
     def process_state(self,state):
@@ -143,7 +143,7 @@ class Muti_agent():
         ego_pos_input = np.zeros((buffer_length, self.params["max_steps"], self.params["lane_code_length"] + 1))
         eva_pos_input = np.zeros((buffer_length, self.params["max_steps"], self.params["num_evader"],
                                   self.params["lane_code_length"] + 1))
-        action_input = np.zeros((buffer_length, self.params["max_steps"]))#np.zero 创建全0数组
+        action_input = np.zeros((buffer_length, self.params["max_steps"]))
         reward_input = np.zeros((buffer_length, self.params["max_steps"]))
         param_input = dc(net_param)
         # critic_param_input=dc(critic_param)
@@ -182,12 +182,12 @@ class Muti_agent():
         # print("=================")
         # print(value)
 
-        probs = self.get_sample_prob(np.array(value))
+        probs = self.get_sample_prob(np.array(value.cpu()))
         # print(value)
         # print("=================")
         c = Categorical(probs)#使用Categorical分布进行采样，得到一个随机的经验索引exp_index。
         exp_index = c.sample().item()
-        chosen_exp = {#！！！这块不太懂
+        chosen_exp = {
             "param_input": net_param.type(torch.float32).view(1, -1),
             "ego_pos_input": torch.from_numpy(np.expand_dims(ego_pos_input[exp_index], axis=0)).type(torch.float32),
             "eva_pos_input": torch.from_numpy(np.expand_dims(eva_pos_input[exp_index].swapaxes(0, 1), axis=0)).type(
@@ -225,14 +225,14 @@ class Muti_agent():
             self.save_evaluate_net(all_loss/self.params["evaluate_net_update_times"])
         return all_loss/self.params["evaluate_net_update_times"]
 
-    def save_evaluate_net(self,loss):#存
+    def save_evaluate_net(self,loss):
         dir_path = 'agent_param/' + self.params["env_name"] + '/' + self.params["exp_name"]
         if not os.path.exists(dir_path):
             os.makedirs(dir_path)
         torch.save(self.pr_exp_net.state_dict(),
                    'agent_param/' + self.params["env_name"] + '/' + self.params["exp_name"]+'/' +'evaluate_net.pth')
 
-    def load_evaluate_net(self):   ###加载训练好的评估网络.pth是pytorch模型文件
+    def load_evaluate_net(self):
         file_path = 'agent_param/' + self.params["env_name"] + '/' + self.params[
             "exp_name"] + '/' +'evaluate_net.pth'
         if os.path.exists(file_path):
