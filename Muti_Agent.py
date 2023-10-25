@@ -31,7 +31,7 @@ class Muti_agent():
             num_param=self.agent_list[self.params["pursuer_ids"][0]].get_param().shape[-1]#每个追车dqn网络的参数数量
             # num_critc_param=self.agent_list[self.params["pursuer_ids"][0]].get_critic_param().shape[-1]
             self.pr_exp_net = prioritization_net(num_param,self.params["lane_code_length"]+1,
-                                                 self.params["num_evader"],self.params["max_steps"])#实例化，他的forward传回来的是一个value，暂且不知道value是什么
+                                                 self.params["num_evader"],self.params["max_steps"])#
             self.pr_exp_net.to(self.device)
             self.pr_net_optimizer = optim.Adam(self.pr_exp_net.parameters(), self.params["evaluate_net_learning_rate"])
             self.prioritization_net_buffer=Prioritization_Net_Buffer(params)
@@ -54,12 +54,12 @@ class Muti_agent():
         for evader_id in self.params["evader_ids"]:
             all_evaders_pos.append(dc(state["evader_pos"][evader_id]))#所有逃车的位置
 
-        all_evaders_pos=[all_evaders_pos]#！！这一步为什么复制一遍
+        all_evaders_pos=[all_evaders_pos]#
         traffic_state=[dc(state["background_veh"])]
-        topo_link_array=[dc(state["topology_array"])]#！！！！什么是topo_link_array
+        topo_link_array=[dc(state["topology_array"])]
 
         for pursuer_id in self.params["pursuer_ids"]:
-            ego_pos = [dc(state["pursuer_pos"][pursuer_id])]#自己的位置
+            ego_pos = [dc(state["pursuer_pos"][pursuer_id])]
             if "target" in state:
                 target_pos=[dc(state["evader_pos"][state["target"][pursuer_id]])]#有目标就选
             else:
@@ -68,7 +68,7 @@ class Muti_agent():
                 steps_tensor=torch.tensor([[dc(state["steps"])]], dtype=torch.float,device=self.device)
                 traffic_state_tensor=torch.tensor(traffic_state, dtype=torch.float,device=self.device)
                 topo_link_array_tensor=torch.tensor(topo_link_array, dtype=torch.float,device=self.device)
-                target_code = self.agent_list[pursuer_id].DQN_Net.select_target(steps_tensor,ego_pos_tensor,traffic_state_tensor,topo_link_array_tensor,all_evaders_pos_tensor)[0]#没有目标就调用注意力机制的网络选择目标
+                target_code = self.agent_list[pursuer_id].DQN_Net.select_target(steps_tensor,ego_pos_tensor,traffic_state_tensor,topo_link_array_tensor,all_evaders_pos_tensor)[0]#选择目标
                 if state["evader_pos"][self.params["evader_ids"][target_code]][0] == -1:
                     target_id = self.min_dis_evader(state, pursuer_id)
                 else:
@@ -82,7 +82,7 @@ class Muti_agent():
                 "topo_link_array":topo_link_array,
                 "all_evaders_pos":all_evaders_pos,
                 "steps":[[dc(state["steps"])]]
-            }#自我状态们
+            }#自身状态列表
             all_states[pursuer_id]= ego_state
         pro_state["target"]=dc(pursuer_target)
         return pro_state,all_states
@@ -122,7 +122,7 @@ class Muti_agent():
                 print("selecting training set for",pursuer_id,".....")
                 train_set,chosen_exp,exp_prob,probs = self.select_train_set(self.agent_list[pursuer_id].get_param())
                 self.prioritization_net_buffer.store_input_exp(pursuer_id,chosen_exp)#另一个网络的缓存
-                w=math.pow(len(probs)*exp_prob,self.lamda)/max(np.power(len(probs)*probs,self.lamda)) #！！！这个权重的解释
+                w=math.pow(len(probs)*exp_prob,self.lamda)/max(np.power(len(probs)*probs,self.lamda))
 
             else:
                 # train_sets=self.replay_buffer.random_sample()
@@ -207,7 +207,7 @@ class Muti_agent():
 
         all_loss = 0
 
-        if self.prioritization_net_buffer.get_length()>self.params["evaluate_net_batch_size"]*0:#####这个判断是为什么
+        if self.prioritization_net_buffer.get_length()>self.params["evaluate_net_batch_size"]*0:
             print("training evaluate network......")
             for i in range(self.params["evaluate_net_update_times"]):
                 self.pr_exp_net.eval()
