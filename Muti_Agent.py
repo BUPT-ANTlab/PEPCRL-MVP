@@ -182,7 +182,7 @@ class Muti_agent():
         # print("=================")
         # print(value)
 
-        probs = self.get_sample_prob(np.array(value.cpu()))
+        probs = self.get_sample_prob(np.array(value.detach().cpu()))
         # print(value)
         # print("=================")
         c = Categorical(probs)#使用Categorical分布进行采样，得到一个随机的经验索引exp_index。
